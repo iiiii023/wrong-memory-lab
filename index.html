@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1f42">
+  <meta name="description" content="错题记忆实验室：比较主动回忆与被动阅读对延迟测试重复错误率影响的教育心理学课程实验网站。">
+  <title>错题记忆实验室｜主动回忆与被动阅读实验</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
+
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="icon-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z"/></symbol>
+    <symbol id="icon-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5.5 9.2A3 3 0 0 0 7.1 23h9.8a3 3 0 0 0 2.6-4.8L14 9V3M8 15h8"/></symbol>
+    <symbol id="icon-brain" viewBox="0 0 24 24"><path d="M9.4 4.6A3.6 3.6 0 0 0 3.8 9a3.4 3.4 0 0 0 .3 6.6A4.2 4.2 0 0 0 11 18V7.2a2.6 2.6 0 0 0-1.6-2.6ZM14.6 4.6A3.6 3.6 0 0 1 20.2 9a3.4 3.4 0 0 1-.3 6.6A4.2 4.2 0 0 1 13 18V7.2a2.6 2.6 0 0 1 1.6-2.6Z"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+    <symbol id="icon-document" viewBox="0 0 24 24"><path d="M6 2h8l4 4v16H6V2Z"/><path d="M14 2v5h5M9 12h6M9 16h6"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+    <symbol id="icon-printer" viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></symbol>
+    <symbol id="icon-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+    <symbol id="icon-note" viewBox="0 0 24 24"><path d="M5 3h14v18H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24"><path d="m12 2 1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6L12 2Z"/></symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></symbol>
+  </svg>
+
+  <header class="site-header no-print" id="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="错题记忆实验室首页">
+        <span class="brand-mark"><svg class="icon"><use href="#icon-brain"></use></svg></span>
+        <span><strong>错题记忆实验室</strong><small>Memory Error Lab</small></span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+        <span class="sr-only">打开导航</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="主导航">
+        <a href="#home">首页</a>
+        <a href="#design">实验设计</a>
+        <a href="#hypotheses">研究假设</a>
+        <a href="#lab">在线实验</a>
+        <a href="#data">数据可视化</a>
+        <a href="#report">实验报告</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero section-anchor" id="home">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="pulse-dot"></span>教育心理学 · 主动回忆实验</div>
+          <h1>错题记忆<span>实验室</span></h1>
+          <p class="hero-subtitle">主动回忆与被动阅读，哪种方式更能减少重复错误？</p>
+          <p class="hero-lead">学生在一段时间后可能忘记曾经做错的题目。本项目通过同一套错题材料、相同的学习与复习时长，以及统一的延迟测试，比较高主动回忆与被动阅读复习对重复错误率的影响。</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#lab"><svg class="icon"><use href="#icon-play"></use></svg>开始实验</a>
+            <a class="btn btn-secondary" href="#design"><svg class="icon"><use href="#icon-flask"></use></svg>查看实验设计</a>
+          </div>
+          <div class="hero-note">
+            <svg class="icon"><use href="#icon-info"></use></svg>
+            <span>页面首次打开含演示数据；正式实验数据仅保存在当前浏览器，可按匿名编号导出。</span>
+          </div>
+        </div>
+
+        <div class="lab-preview" aria-label="实验流程和数据概览视觉预览">
+          <div class="preview-topline">
+            <span>当前实验信号</span>
+            <span class="live-chip"><i></i>LOCAL ONLY</span>
+          </div>
+          <div class="memory-panel">
+            <div class="memory-copy">
+              <small>记忆保持曲线</small>
+              <strong>先回忆，再订正</strong>
+              <span>学习后 24 小时内进行一次主动检索</span>
+            </div>
+            <svg class="memory-curve" viewBox="0 0 360 150" role="img" aria-label="主动回忆与被动阅读的示意曲线">
+              <defs>
+                <linearGradient id="curve-fill" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="#6366f1" stop-opacity=".28"/>
+                  <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="grid-line" d="M24 30h312M24 70h312M24 110h312"/>
+              <path class="curve-area" d="M24 38 C72 44,84 54,118 62 S180 82,214 88 S276 105,336 116 L336 128H24Z"/>
+              <path class="curve-active" d="M24 38 C72 44,84 54,118 62 S180 82,214 88 S276 105,336 116"/>
+              <path class="curve-passive" d="M24 40 C62 70,104 91,144 104 S246 120,336 126"/>
+            </svg>
+            <div class="curve-legend">
+              <span><i class="legend-active"></i>主动回忆示意</span>
+              <span><i class="legend-passive"></i>被动阅读示意</span>
+            </div>
+          </div>
+          <div class="preview-metrics">
+            <div><span>基线题</span><strong>10</strong><small>道</small></div>
+            <div><span>复习材料</span><strong>10</strong><small>项</small></div>
+            <div><span>正式延迟</span><strong id="preview-delay">7</strong><small>天</small></div>
+          </div>
+          <div class="preview-flow">
+            <span class="flow-chip active">基线</span><i></i>
+            <span class="flow-chip">随机分组</span><i></i>
+            <span class="flow-chip">统一复习</span><i></i>
+            <span class="flow-chip">延迟测试</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container overview-strip">
+        <div class="overview-item">
+          <span class="overview-icon"><svg class="icon"><use href="#icon-note"></use></svg></span>
+          <div><strong>同源错题</strong><p>基线、练习和测试围绕相同知识点。</p></div>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon"><svg class="icon"><use href="#icon-flask"></use></svg></span>
+          <div><strong>随机分组</strong><p>参与者不能选择，本次记录保持固定。</p></div>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon"><svg class="icon"><use href="#icon-clock"></use></svg></span>
+          <div><strong>相同用时</strong><p>两种复习方式使用统一倒计时。</p></div>
+        </div>
+        <div class="overview-item">
+          <span class="overview-icon"><svg class="icon"><use href="#icon-chart"></use></svg></span>
+          <div><strong>严格重复错误</strong><p>只统计同一知识点的前后两次错误。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-anchor design-section" id="design">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-index">01 / 研究背景</span>
+            <h2>为什么要研究“怎么复习错题”</h2>
+          </div>
+          <p>错题本的价值不只在于“看过正确答案”，更在于学习内容能否在延迟测试中被重新提取并纠正。</p>
+        </div>
+
+        <div class="background-grid">
+          <article class="narrative-block">
+            <span class="mini-label">研究背景</span>
+            <h3>曾经的错误，可能再次出现</h3>
+            <p>许多学生会在订正后认为已经掌握题目，但经过数天或数周，原本做错的知识点仍可能在相似题目中再次出错。被动阅读答案可能带来熟悉感，却不一定能形成稳定的提取路径；主动回忆则要求学习者先尝试从记忆中找回答案，再接受反馈。</p>
+          </article>
+          <aside class="hypothesis-spotlight">
+            <span class="mini-label">核心假设</span>
+            <p>在学习材料、学习时长和测试难度相同的条件下，主动回忆复习组在延迟测试中的错误率低于被动阅读复习组。</p>
+            <div class="hypothesis-sign">
+              <span>H主要</span>
+              <small>错误率<sub>主动回忆</sub> &lt; 错误率<sub>被动阅读</sub></small>
+            </div>
+          </aside>
+        </div>
+
+        <div class="method-compare">
+          <article class="method-card method-recall">
+            <div class="method-number">A</div>
+            <div>
+              <span class="method-tag">实验组</span>
+              <h3>主动回忆组</h3>
+              <p>学习相同材料时，先独立尝试回忆答案，再查看答案并订正，明确记录自己是否完成检索。</p>
+            </div>
+            <ul>
+              <li><svg class="icon"><use href="#icon-check"></use></svg>先隐藏答案</li>
+              <li><svg class="icon"><use href="#icon-check"></use></svg>尝试写出答案</li>
+              <li><svg class="icon"><use href="#icon-check"></use></svg>提交后看解析</li>
+            </ul>
+          </article>
+          <div class="versus" aria-hidden="true"><span>VS</span></div>
+          <article class="method-card method-reading">
+            <div class="method-number">B</div>
+            <div>
+              <span class="method-tag">对照组</span>
+              <h3>被动阅读组</h3>
+              <p>使用相同时间阅读材料与正确答案，不进行主动回忆练习，完成任务后明确标记阅读状态。</p>
+            </div>
+            <ul>
+              <li><svg class="icon"><use href="#icon-check"></use></svg>直接阅读题目</li>
+              <li><svg class="icon"><use href="#icon-check"></use></svg>理解正确答案</li>
+              <li><svg class="icon"><use href="#icon-check"></use></svg>查看简短解析</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="design-layout">
+          <article class="design-summary">
+            <span class="mini-label">研究对象与设计</span>
+            <h3>20 名学生 · 两组随机分配</h3>
+            <p>计划招募 20 名学生，随机分成主动回忆组与被动阅读组。计划样本量不代表已招募到参与者；实际样本量、实验日期、延迟时长和结果必须由使用者填写。</p>
+            <div class="design-facts">
+              <div><strong>10</strong><span>计划每组人数</span></div>
+              <div><strong>10</strong><span>基线 / 测试题数</span></div>
+              <div><strong>10</strong><span>对应练习材料</span></div>
+            </div>
+          </article>
+
+          <article class="control-panel">
+            <div class="control-heading">
+              <span><svg class="icon"><use href="#icon-lock"></use></svg></span>
+              <div><small>CONTROL VARIABLES</small><h3>控制变量</h3></div>
+            </div>
+            <div class="control-list">
+              <span>学习材料</span><span>学习时长</span><span>测试题数</span>
+              <span>测试难度</span><span>延迟时间</span><span>测试环境要求</span>
+            </div>
+            <p>不控制参与者的既有知识水平；基线测试结果用于识别本实验中的重复错误，而不是将参与者筛选为“高能力组”。</p>
+          </article>
+        </div>
+
+        <div class="flow-section">
+          <div class="flow-heading">
+            <span class="mini-label">实验流程</span>
+            <h3>六个步骤，从基线到比较</h3>
+          </div>
+          <ol class="experiment-flow">
+            <li><span>01</span><strong>完成基线测试</strong><p>记录每个知识点的初始错误情况。</p></li>
+            <li><span>02</span><strong>系统随机分组</strong><p>参与者不能自行选择实验组。</p></li>
+            <li><span>03</span><strong>学习相同材料</strong><p>两组接触相同的错题知识点。</p></li>
+            <li><span>04</span><strong>完成不同复习任务</strong><p>主动检索或被动阅读，用时一致。</p></li>
+            <li><span>05</span><strong>完成延迟测试</strong><p>延迟时长须按实验方案真实等待。</p></li>
+            <li><span>06</span><strong>统计与比较</strong><p>比较错误率与严格的重复错误数。</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-anchor hypotheses-section" id="hypotheses">
+      <div class="container">
+        <div class="section-heading compact">
+          <div>
+            <span class="section-index">02 / 研究假设</span>
+            <h2>三个相互独立、可检验的假设</h2>
+          </div>
+          <p>只有假设三属于本项目的主要实验。前两项作为备选假设展示，不计入本页主动回忆与被动阅读的两组比较。</p>
+        </div>
+        <div class="hypothesis-grid">
+          <article class="hypothesis-card">
+            <div class="hypothesis-card-top"><span>H1</span><em>备选研究假设</em></div>
+            <h3>复习间隔与错误率</h3>
+            <p>在其他条件相同的情况下，较短的复习间隔与较低的延迟测试错误率相关。</p>
+            <div class="hypothesis-vars"><span>自变量：复习间隔</span><span>因变量：错误率</span></div>
+          </article>
+          <article class="hypothesis-card">
+            <div class="hypothesis-card-top"><span>H2</span><em>备选研究假设</em></div>
+            <h3>错误归因与重复错误</h3>
+            <p>与仅查看正确答案相比，分析并记录错误原因能够降低后续同类题目的重复错误率。</p>
+            <div class="hypothesis-vars"><span>操作：错误归因</span><span>因变量：重复错误</span></div>
+          </article>
+          <article class="hypothesis-card primary-hypothesis">
+            <div class="hypothesis-card-top"><span>H3</span><em><svg class="icon"><use href="#icon-spark"></use></svg>主要研究假设</em></div>
+            <h3>主动回忆与被动阅读</h3>
+            <p>与被动阅读相比，主动回忆复习能够降低延迟测试中的重复错误率。</p>
+            <div class="hypothesis-vars"><span>实验组：主动回忆</span><span>对照组：被动阅读</span></div>
+          </article>
+        </div>
+        <div class="warning-banner">
+          <svg class="icon"><use href="#icon-info"></use></svg>
+          <p><strong>解释边界：</strong>本页会自动计算描述性错误率，但未内置显著性检验。即使两组错误率不同，也不能仅凭平均值差异断言因果关系或统计显著性。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-anchor lab-section" id="lab">
+      <div class="container">
+        <div class="section-heading lab-heading">
+          <div>
+            <span class="section-index">03 / 在线实验</span>
+            <h2>完成一套匿名、可复查的流程</h2>
+          </div>
+          <div class="privacy-chip"><svg class="icon"><use href="#icon-lock"></use></svg>不收集姓名、电话或学号</div>
+        </div>
+
+        <div class="lab-shell">
+          <aside class="lab-sidebar">
+            <div class="lab-status">
+              <small>实验状态</small>
+              <strong id="lab-status-title">等待开始</strong>
+              <span id="lab-status-detail">请先选择运行模式</span>
+            </div>
+            <ol class="lab-stepper" id="lab-stepper" aria-label="实验步骤"></ol>
+            <div class="lab-sidebar-note">
+              <svg class="icon"><use href="#icon-info"></use></svg>
+              <p>刷新页面不会丢失当前浏览器中的进度，但清除浏览器数据会删除记录。</p>
+            </div>
+          </aside>
+          <div class="lab-main" id="experiment-stage" aria-live="polite"></div>
+        </div>
+
+        <div class="lab-toolbar no-print">
+          <button class="text-button" type="button" data-action="show-reset-dialog"><svg class="icon"><use href="#icon-reset"></use></svg>重置演示实验</button>
+          <span>匿名记录保存在 <code>localStorage</code>，不会自动上传。</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-anchor data-section" id="data">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-index">04 / 数据与可视化</span>
+            <h2>录入、校验并比较两组结果</h2>
+          </div>
+          <div class="data-source-chip" id="data-source-chip"><span></span>演示数据</div>
+        </div>
+
+        <div class="demo-notice" id="demo-notice">
+          <svg class="icon"><use href="#icon-info"></use></svg>
+          <div><strong>当前展示的是演示数据</strong><p>演示数值仅用于检查图表与报告功能，不是真实实验结果，也不能作为课程结论。</p></div>
+          <button class="btn btn-small btn-ghost-light" type="button" data-action="clear-demo">清除演示数据</button>
+        </div>
+
+        <div class="analysis-layout">
+          <form class="data-form" id="data-form" novalidate>
+            <div class="form-block">
+              <div class="form-block-heading">
+                <span>01</span><div><h3>样本与分组</h3><p>计划人数只用于区分研究方案与实际完成情况。</p></div>
+              </div>
+              <div class="field-grid two">
+                <label>主动回忆组计划人数<input type="number" min="0" max="10000" step="1" data-analysis="activePlannedN"></label>
+                <label>被动阅读组计划人数<input type="number" min="0" max="10000" step="1" data-analysis="controlPlannedN"></label>
+                <label>主动回忆组有效人数<input type="number" min="0" max="10000" step="1" data-analysis="activeValidN"></label>
+                <label>被动阅读组有效人数<input type="number" min="0" max="10000" step="1" data-analysis="controlValidN"></label>
+              </div>
+            </div>
+
+            <div class="form-block">
+              <div class="form-block-heading">
+                <span>02</span><div><h3>测试结果</h3><p>总题数应等于该组所有有效参与者测试题数之和。</p></div>
+              </div>
+              <div class="field-grid two">
+                <label>主动回忆组测试总题数<input type="number" min="1" max="1000000" step="1" data-analysis="activeTotalQuestions"></label>
+                <label>被动阅读组测试总题数<input type="number" min="1" max="1000000" step="1" data-analysis="controlTotalQuestions"></label>
+                <label>主动回忆组答错题数<input type="number" min="0" max="1000000" step="1" data-analysis="activeWrong"></label>
+                <label>被动阅读组答错题数<input type="number" min="0" max="1000000" step="1" data-analysis="controlWrong"></label>
+                <label>主动回忆组重复错误数<input type="number" min="0" max="1000000" step="1" data-analysis="activeRepeats"></label>
+                <label>被动阅读组重复错误数<input type="number" min="0" max="1000000" step="1" data-analysis="controlRepeats"></label>
+              </div>
+            </div>
+
+            <div class="form-block">
+              <div class="form-block-heading">
+                <span>03</span><div><h3>实验记录</h3><p>日期、延迟和完成状态会写入实验报告。</p></div>
+              </div>
+              <div class="field-grid two">
+                <label>实际实验日期<input type="date" data-analysis="experimentDate"></label>
+                <label>实际延迟时间<input type="text" maxlength="40" placeholder="例如：7天" data-analysis="delayTime"></label>
+                <label class="field-wide">延迟测试状态
+                  <select data-analysis="delayedTestStatus">
+                    <option value="pending">尚未完成</option>
+                    <option value="completed">已完成正式延迟测试</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            <div class="validation-panel" id="validation-panel" aria-live="polite"></div>
+          </form>
+
+          <div class="analysis-results">
+            <div class="metric-grid">
+              <article class="metric-card metric-recall">
+                <span>主动回忆组错误率</span>
+                <strong id="metric-active-rate">21.1%</strong>
+                <small id="metric-active-detail">19 / 90</small>
+              </article>
+              <article class="metric-card metric-reading">
+                <span>被动阅读组错误率</span>
+                <strong id="metric-control-rate">33.0%</strong>
+                <small id="metric-control-detail">33 / 100</small>
+              </article>
+              <article class="metric-card metric-difference">
+                <span>错误率差值（被动 − 主动）</span>
+                <strong id="metric-difference">+11.9%</strong>
+                <small id="metric-difference-detail">本次录入数据中主动回忆组错误率更低</small>
+              </article>
+              <article class="metric-card metric-repeat">
+                <span>重复错误总数</span>
+                <strong id="metric-repeat-total">20</strong>
+                <small id="metric-repeat-detail">主动 6 · 被动 14</small>
+              </article>
+            </div>
+
+            <div class="chart-grid">
+              <article class="chart-panel chart-wide">
+                <div class="chart-heading"><div><span>错误率比较</span><h3>延迟测试错误率</h3></div><small>数值越低越好</small></div>
+                <div class="bar-chart" id="error-rate-chart"></div>
+              </article>
+              <article class="chart-panel">
+                <div class="chart-heading"><div><span>正确率</span><h3>两组保持情况</h3></div><small>100% − 错误率</small></div>
+                <div class="bar-chart compact" id="correct-rate-chart"></div>
+              </article>
+              <article class="chart-panel">
+                <div class="chart-heading"><div><span>重复错误</span><h3>同知识点再次出错</h3></div><small>人次/题次</small></div>
+                <div class="bar-chart repeat-bars" id="repeat-chart"></div>
+              </article>
+              <article class="chart-panel">
+                <div class="chart-heading"><div><span>样本量</span><h3>有效测试人数</h3></div><small>计划 vs. 有效</small></div>
+                <div class="sample-chart" id="sample-chart"></div>
+              </article>
+            </div>
+
+            <div class="result-note">
+              <svg class="icon"><use href="#icon-note"></use></svg>
+              <p><strong>重复错误判定：</strong>只有参与者在同一知识点的基线题中作答错误，并在对应的延迟测试题中再次作答错误，才计为一次重复错误。其他答错题不自动归入重复错误。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="records-band no-print">
+          <div>
+            <span class="mini-label">正式模式记录</span>
+            <h3>本机匿名实验档案</h3>
+            <p>正式模式可记录匿名编号、实验时间、分组、阶段状态、答题结果和重复错误。记录只保存在当前浏览器，不能跨设备自动汇总。</p>
+          </div>
+          <div class="records-actions">
+            <span id="records-count">当前 0 条记录</span>
+            <button class="btn btn-secondary btn-small" type="button" data-action="export-records-json">导出 JSON</button>
+            <button class="btn btn-secondary btn-small" type="button" data-action="export-records-csv">导出 CSV</button>
+            <button class="text-button danger" type="button" data-action="clear-records">清空本机记录</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-anchor report-section" id="report">
+      <div class="container">
+        <div class="section-heading no-print">
+          <div>
+            <span class="section-index">05 / 实验报告</span>
+            <h2>把录入数据整理为中文报告</h2>
+          </div>
+          <p>报告会自动保留“待填写”和“尚未完成”状态，不会根据缺失数据编造结果。</p>
+        </div>
+
+        <div class="report-toolbar no-print">
+          <button class="btn btn-primary" type="button" data-action="generate-report"><svg class="icon"><use href="#icon-document"></use></svg>生成最新报告</button>
+          <button class="btn btn-secondary" type="button" data-action="copy-report"><svg class="icon"><use href="#icon-copy"></use></svg>复制报告</button>
+          <button class="btn btn-secondary" type="button" data-action="download-report"><svg class="icon"><use href="#icon-download"></use></svg>下载 TXT</button>
+          <button class="btn btn-secondary" type="button" data-action="export-analysis-json">导出 JSON</button>
+          <button class="btn btn-secondary" type="button" data-action="export-analysis-csv">导出 CSV</button>
+          <button class="btn btn-secondary" type="button" data-action="print-report"><svg class="icon"><use href="#icon-printer"></use></svg>打印 / PDF</button>
+        </div>
+
+        <article class="report-paper" id="report-paper">
+          <header class="report-header">
+            <div>
+              <span>教育心理学课程实验报告</span>
+              <h2>错题记忆实验室：主动回忆与被动阅读对重复错误率的影响</h2>
+              <p>报告生成时间：<time id="report-generated-at">—</time></p>
+            </div>
+            <div class="report-mark" id="report-mark">演示数据</div>
+          </header>
+          <div class="report-body" id="report-content"></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer no-print">
+    <div class="container footer-layout">
+      <div>
+        <a class="brand footer-brand" href="#home">
+          <span class="brand-mark"><svg class="icon"><use href="#icon-brain"></use></svg></span>
+          <span><strong>错题记忆实验室</strong><small>课程实验 · 静态网站版本</small></span>
+        </a>
+        <p>本网站不采集直接身份信息，不依赖后端或付费 API。正式实验请遵守所在学校的伦理与数据管理要求。</p>
+      </div>
+      <div class="footer-links">
+        <a href="#design">实验设计</a>
+        <a href="#lab">在线实验</a>
+        <a href="#data">数据分析</a>
+        <a href="#report">报告生成</a>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="reset-dialog no-print" id="reset-dialog" aria-labelledby="reset-dialog-title">
+    <form method="dialog">
+      <span class="dialog-icon"><svg class="icon"><use href="#icon-reset"></use></svg></span>
+      <h2 id="reset-dialog-title">重置当前实验？</h2>
+      <p>即时演示进度会被清除。正式实验记录如果已经保存在本机记录池中，不会被删除。</p>
+      <div class="dialog-actions">
+        <button class="btn btn-secondary" value="cancel">取消</button>
+        <button class="btn btn-danger" id="confirm-reset-experiment" value="confirm">确认重置</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
